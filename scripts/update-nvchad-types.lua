@@ -66,7 +66,6 @@ local gen_highlights = function()
   local hlgroups = {}
   local ignored_files = {
     ["treesitter"] = true,
-    ["statusline"] = true,
   }
 
   local mapped_name = {
