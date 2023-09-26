@@ -68,7 +68,7 @@ M.mode = function()
   local m = vim.api.nvim_get_mode().mode
 
   return gen_block(
-    "",
+    "󱤅",
     M.modes[m][1],
     "%#" .. M.modes[m][2] .. "Sep#",
     "%#" .. M.modes[m][2] .. "#",
@@ -102,7 +102,7 @@ M.git = function()
   local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
   local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
   local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
-  local branch_name = " " .. git_status.head
+  local branch_name = "" .. git_status.head
 
   return "%#St_gitIcons#" .. branch_name .. added .. changed .. removed
 end
@@ -162,7 +162,7 @@ M.LSP_status = function()
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
       if client.attached_buffers[vim.api.nvim_get_current_buf()] and client.name ~= "null-ls" then
-        return (vim.o.columns > 100 and gen_block("", client.name, "%#St_lsp_sep#", "%#St_lsp_bg#", "%#St_lsp_txt#"))
+        return (vim.o.columns > 100 and gen_block("", client.name, "%#St_lsp_sep#", "%#St_lsp_bg#", "%#St_lsp_txt#"))
           or "  LSP "
       end
     end
@@ -174,12 +174,12 @@ end
 M.cwd = function()
   return (
     vim.o.columns > 85
-    and gen_block("", fn.fnamemodify(fn.getcwd(), ":t"), "%#St_cwd_sep#", "%#St_cwd_bg#", "%#St_cwd_txt#")
+    and gen_block(" ", fn.fnamemodify(fn.getcwd(), ":t"), "%#St_cwd_sep#", "%#St_cwd_bg#", "%#St_cwd_txt#")
   ) or ""
 end
 
 M.cursor_position = function()
-  return gen_block("", "%l/%c", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
+  return gen_block("󰦘", "%l/%c", "%#St_Pos_sep#", "%#St_Pos_bg#", "%#St_Pos_txt#")
 end
 
 M.file_encoding = function()
