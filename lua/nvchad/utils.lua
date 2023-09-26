@@ -29,7 +29,6 @@ M.replace_word = function(old, new)
   file = io.open(chadrc, "w")
   file:write(new_content)
   file:close()
-  print("hello world")
 end
 
 return M
